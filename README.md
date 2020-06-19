@@ -4,14 +4,16 @@ A quick note: This document assumes git and Python, but it will work equally wel
 
 ## Version Control
 
-### Today
-
 Individual developers should be able to:
 
 1. Have isolation from other developers while they work
 1. Be able to integrate their work with the work of others
 
-Git is a great tool for this, but unfortunately, Databricks' integration with git is lacking.  You can only save out to git one file at a time.  This is not ideal, but there is a reasonably elegant way to accomplish this with the [Databricks command-line client](https://docs.databricks.com/dev-tools/cli/index.html).
+Git is a great tool for this, but unfortunately, Databricks' integration with git is lacking. 
+
+### Today
+
+You can only save out to git one file at a time in Databricks.  This is not ideal, but there is a reasonably elegant way to accomplish this with the [Databricks command-line client](https://docs.databricks.com/dev-tools/cli/index.html).
 
 The solution is this:
 
@@ -23,9 +25,9 @@ The solution is this:
 `databricks workspace import_dir /Users/example@databricks.com/example localpath`
 1. Use git on your laptop to commit and push the changes.
 
-### Future
+### Near Future
 
-Expect better direct integration with Git in the future.
+Expect better direct integration with Git.
 
 ## Modularization
 
@@ -55,4 +57,14 @@ Here are some examples:
 
 This feature is [documented here](https://docs.databricks.com/notebooks/notebooks-python-libraries.html)
 
-## Moving to Production
+## CI/CD
+
+There is quite a bit of [documentation](https://docs.databricks.com/dev-tools/ci-cd/ci-cd-jenkins.html) on this subject focused on Jenkins, but a high level overview is warranted here.  For CI/CD to work, you need separate environments such as dev, staging, and prod.  We can create environments using workspace folders and clusters.  
+
+Each environment should have:
+
+- a cluster configuration, including the version of packages installed
+- a dedicated folder with the code
+
+
+Everything, including execution, can be controlled via the [REST API](https://docs.databricks.com/dev-tools/api/latest/index.html) or [CLI](https://docs.databricks.com/dev-tools/cli/index.html)
