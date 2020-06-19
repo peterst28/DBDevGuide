@@ -1,5 +1,7 @@
 # Working in Teams on Databricks
 
+A quick note: This document assumes git and Python, but it will work equally well with other tools and languages.
+
 ## Version Control
 
 ### Today
@@ -29,12 +31,28 @@ Expect better direct integration with Git in the future.
 
 Legible and maintainable code is broken up into logical parts.  How do you accomplish this in the Databricks environment?  The following are a couple of approaches.
 
-### Notebook Workflows
+### Import Using %run
 
-You can call 
+Include other notebooks in your notebook using the %run magic command.  For example:
+
+`%run ./Includes/MyIncludedNotebook`
+
+The notebook `MyIncludedNotebook` can contain standard Python class definitions, function definitions, etc.  Once you've included the `MyIncludedNotebook` using %run, you can make use of any functionality it defines.
 
 ### Libraries
 
+Common code can be installed to clusters using the built-in library functionality.  This is a popular way to make relatively static code available to notebooks running on Databricks.  To get started take a look at this [documentation](https://docs.databricks.com/libraries.html#cluster-installed-library).  For more detail, this functionality is extensively documented [here](https://docs.databricks.com/libraries.html).
+
 ## Notebook-Scoped Library Dependencies
+
+Sometimes, a developer may need a different library than the one installed on a shared cluster.  You can install notebook-scoped libraries to accomplish this using `%pip` or `%conda`, but be aware that this is a relatively expensive operation.  It's only recommended for development, not production.  
+
+Here are some examples:
+
+`%pip install matplotlib`
+`%conda install matplotlib`
+`%pip install -r /dbfs/requirements.txt`
+
+This feature is [documented here](https://docs.databricks.com/notebooks/notebooks-python-libraries.html)
 
 ## Moving to Production
