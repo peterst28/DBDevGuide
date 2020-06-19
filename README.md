@@ -66,5 +66,8 @@ Each environment should have:
 - a cluster configuration, including the version of packages installed
 - a dedicated folder with the code
 
+An environment folder could look something like this:
 
-Everything, including execution, can be controlled via the [REST API](https://docs.databricks.com/dev-tools/api/latest/index.html) or [CLI](https://docs.databricks.com/dev-tools/cli/index.html)
+![Folder Example](https://raw.githubusercontent.com/peterst28/DBDevGuide/master/Picture1.png)
+
+Everything, including moving code between environments and execution, can be controlled via the [REST API](https://docs.databricks.com/dev-tools/api/latest/index.html) or [CLI](https://docs.databricks.com/dev-tools/cli/index.html)
